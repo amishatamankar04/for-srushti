@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Srushti</title>
-    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Great+Vibes&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>Dearest Srushti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
+            --bridgerton-blue: #a3c1ad; /* Classic Regency Blue/Green */
+            --royal-gold: #d4af37;
+            --cream: #fffdf5;
             --brittany-font: 'Birthstone Bounce', cursive;
-            --heart-red: #ff0033;
-            --soft-pink: #ffdae9;
         }
 
         body {
@@ -20,63 +21,92 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            /* Damask Pattern Background */
+            background-color: var(--bridgerton-blue);
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png"), 
+                              radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(163,193,173,1) 100%);
             overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Playfair Display', serif;
         }
 
-        /* Metallic Balloons */
+        /* Metallic Rose Gold Heart Balloons */
         .balloon {
             position: absolute;
-            width: 45px;
-            height: 55px;
-            background: radial-gradient(circle at 30% 30%, #fff 0%, #ff85a1 40%, #d63384 100%);
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #f7d7d7, #e0b0ff 40%, #b76e79 100%);
+            transform: rotate(-45deg);
             z-index: 1;
-            box-shadow: inset -2px -2px 10px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.1);
-            animation: floatUp 8s infinite ease-in;
+            box-shadow: inset -2px -2px 8px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.1);
+            animation: floatUp 12s infinite ease-in;
             pointer-events: none;
         }
+        .balloon::before, .balloon::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: inherit;
+            border-radius: 50%;
+        }
+        .balloon::before { top: -20px; left: 0; }
+        .balloon::after { left: 20px; top: 0; }
 
         @keyframes floatUp {
-            0% { transform: translateY(110vh) rotate(0deg); }
-            100% { transform: translateY(-20vh) rotate(20deg); }
+            0% { transform: translateY(110vh) rotate(-45deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(-15deg) scale(1.1); opacity: 0; }
         }
 
-        /* The Interactive Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(15px);
-            padding: 40px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.6);
+        /* The Letter / Card */
+        .regency-card {
+            background: var(--cream);
+            padding: 50px 30px;
+            border-radius: 5px;
+            border: 8px double var(--royal-gold);
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2), inset 0 0 100px rgba(212,175,55,0.1);
             z-index: 10;
-            width: 90%;
-            max-width: 400px;
+            width: 85%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .regency-card::before {
+            content: "✨";
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--royal-gold);
         }
 
         .mail-icon {
-            font-size: 80px;
+            font-size: 70px;
             cursor: pointer;
-            animation: pulse 2s infinite;
+            filter: sepia(0.5);
+            transition: 0.3s;
+        }
+        .mail-icon:hover { transform: scale(1.1); }
+
+        .whistledown-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #444;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--royal-gold);
             display: inline-block;
+            padding-bottom: 5px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* THE BRITTANY STYLE QUESTION */
+        /* PROPOSAL TEXT (Brittany Style) */
         .proposal-text {
             display: none;
             font-family: var(--brittany-font);
-            color: var(--heart-red);
-            font-size: 3.8rem; /* Large and signature-like */
-            margin-bottom: 30px;
+            color: #8b0000;
+            font-size: 3.5rem;
+            margin: 20px 0;
             line-height: 1.1;
         }
 
@@ -85,38 +115,41 @@
             flex-direction: column;
             gap: 15px;
             align-items: center;
+            margin-top: 20px;
         }
 
         button {
-            width: 200px;
-            padding: 15px;
-            border-radius: 50px;
-            border: none;
+            width: 180px;
+            padding: 12px;
+            border: 1px solid var(--royal-gold);
+            background: transparent;
+            font-family: 'Cinzel', serif;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            font-size: 1rem;
+            color: #444;
+            text-transform: uppercase;
         }
 
         #yes-btn {
-            background: var(--heart-red);
+            background: var(--royal-gold);
             color: white;
-            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.4);
         }
 
         #no-btn {
             background: white;
-            color: #666;
-            position: relative;
+            opacity: 0.8;
         }
 
         #final-msg {
             display: none;
             font-family: var(--brittany-font);
             font-size: 3rem;
-            color: white;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            color: #8b0000;
+            animation: fadeIn 2s ease;
         }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (min-width: 600px) {
             .btn-container { flex-direction: row; justify-content: center; }
@@ -126,42 +159,40 @@
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-    </audio>
+    <div id="balloons-container"></div>
 
-    <div class="glass-card" id="mainCard">
+    <div class="regency-card" id="mainCard">
         <div id="envelopeSection">
-            <div class="mail-icon" onclick="start()">💌</div>
-            <p style="font-family: var(--brittany-font); font-size: 2rem; color: #fff;">Hi Srushti, Click the Mail</p>
+            <div class="whistledown-text">Lady Whistledown's Society Paper</div>
+            <div class="mail-icon" onclick="revealProposal()">📜</div>
+            <p style="font-style: italic; color: #555;">Dearest Srushti, a special correspondence has arrived for you...</p>
         </div>
 
         <div id="proposalSection">
             <h1 class="proposal-text" id="qText">Srushti, Will You Be My Valentine?</h1>
             <div class="btn-container" id="bContainer">
-                <button id="yes-btn" onclick="celebrate()">Yes!</button>
-                <button id="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">No</button>
+                <button id="yes-btn" onclick="celebrate()">I shall</button>
+                <button id="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">I cannot</button>
             </div>
         </div>
 
         <div id="final-msg">
-            Happy Propose Day love! ❤️<br>
-            <span style="font-family: 'Montserrat'; font-size: 1rem; display: block; margin-top: 10px;">Can't wait to see you on Valentines.</span>
+            Happy Propose Day, my love. ❤️<br>
+            <span style="font-family: 'Playfair Display'; font-size: 1.1rem; display: block; margin-top: 15px; font-weight: 600;">You are the diamond of the season.</span>
         </div>
     </div>
 
     <script>
-        // Create Balloons
+        // Generate Metallic Rose Gold Hearts
         for (let i = 0; i < 15; i++) {
             let b = document.createElement('div');
             b.className = 'balloon';
             b.style.left = Math.random() * 90 + 'vw';
-            b.style.animationDelay = Math.random() * 8 + 's';
-            document.body.appendChild(b);
+            b.style.animationDelay = Math.random() * 10 + 's';
+            document.getElementById('balloons-container').appendChild(b);
         }
 
-        function start() {
-            document.getElementById('bgMusic').play();
+        function revealProposal() {
             document.getElementById('envelopeSection').style.display = 'none';
             document.getElementById('qText').style.display = 'block';
             document.getElementById('bContainer').style.display = 'flex';
@@ -169,7 +200,7 @@
 
         function moveNo() {
             const btn = document.getElementById('no-btn');
-            btn.innerText = "Try again! 😉";
+            btn.innerText = "Try again, dear!";
             const x = Math.random() * (window.innerWidth - 200);
             const y = Math.random() * (window.innerHeight - 100);
             btn.style.position = 'fixed';
@@ -179,38 +210,16 @@
 
         function celebrate() {
             document.getElementById('proposalSection').style.display = 'none';
-            document.getElementById('mainCard').style.background = 'transparent';
-            document.getElementById('mainCard').style.border = 'none';
-            document.getElementById('mainCard').style.boxShadow = 'none';
             document.getElementById('final-msg').style.display = 'block';
-            document.body.style.background = "#ff4d6d";
+            document.body.style.background = "#f5e1da"; // Soft blush finish
 
-            // Heart Confetti
-            var end = Date.now() + (5 * 1000);
-            var colors = ['#ff0000', '#ffccd5'];
-
-            (function frame() {
-              confetti({
-                particleCount: 3,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: colors,
-                shapes: ['circle'] // For heart shapes, use a custom SVG path if desired, 
-                                   // but circles look like falling petals!
-              });
-              confetti({
-                particleCount: 3,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: colors
-              });
-
-              if (Date.now() < end) {
-                requestAnimationFrame(frame);
-              }
-            }());
+            // Royal Gold & Red Confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#d4af37', '#8b0000', '#ffffff']
+            });
         }
     </script>
 </body>

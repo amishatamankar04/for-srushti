@@ -2,236 +2,255 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Srushti ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --pink-bg: #ffdae0;
-            --heart-red: #e63946;
-            --metallic-pink: #ff85a1;
+            --brittany-font: 'Birthstone Bounce', cursive;
+            --heart-red: #ff0033;
+            --soft-pink: #ffdae9;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--pink-bg);
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Metallic Balloons Background */
+        /* Metallic Balloons */
         .balloon {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle at 30% 30%, #ffb3c1, #e63946);
-            clip-path: path('M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z');
-            opacity: 0.7;
-            z-index: 0;
-            animation: float up infinite linear;
+            width: 45px;
+            height: 55px;
+            background: radial-gradient(circle at 30% 30%, #fff 0%, #ff85a1 40%, #d63384 100%);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            z-index: 1;
+            box-shadow: inset -2px -2px 10px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.1);
+            animation: floatUp 8s infinite ease-in;
+            pointer-events: none;
         }
 
-        @keyframes float {
+        @keyframes floatUp {
             0% { transform: translateY(110vh) rotate(0deg); }
-            100% { transform: translateY(-20vh) rotate(360deg); }
+            100% { transform: translateY(-20vh) rotate(20deg); }
         }
 
-        /* Envelope Styling */
-        .container {
+        /* Frosted Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 40px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.6);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             z-index: 10;
-            position: relative;
+            width: 90%;
+            max-width: 420px;
+            transition: all 0.5s ease;
         }
 
-        .envelope-wrapper {
+        .mail-icon {
+            font-size: 80px;
             cursor: pointer;
-            transition: transform 0.3s;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
         }
 
-        .envelope-wrapper:hover {
-            transform: scale(1.05);
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
         }
 
-        .instruction {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
-            color: #d63384;
-            margin-bottom: 20px;
-        }
+        #proposalSection { display: none; }
 
-        .envelope {
-            width: 150px;
-            height: 100px;
-            background: #f8ad9d;
-            position: relative;
-            margin: 0 auto;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .envelope::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-left: 75px solid transparent;
-            border-right: 75px solid transparent;
-            border-top: 60px solid #f08080;
-            z-index: 2;
-        }
-
-        .heart-seal {
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 30px;
+        .proposal-text {
+            font-family: var(--brittany-font);
             color: var(--heart-red);
-            z-index: 3;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            line-height: 1.1;
         }
 
-        /* Question Screen */
-        #question-screen, #final-screen {
-            display: none;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 400px;
-        }
-
-        .calligraphy {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: var(--heart-red);
-            margin-bottom: 30px;
-        }
-
-        .btn-group {
+        .btn-container {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            position: relative;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
         button {
-            padding: 12px 25px;
-            border: none;
+            width: 80%;
+            max-width: 200px;
+            padding: 16px;
             border-radius: 50px;
-            cursor: pointer;
+            border: none;
             font-weight: 600;
-            transition: 0.3s;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
 
-        .btn-yes { background: #4caf50; color: white; }
-        .btn-no { background: var(--heart-red); color: white; position: relative; }
-
-        /* Final Elements */
-        #cupid {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 50px;
-            transition: 1s ease-out;
+        #yes-btn {
+            background: var(--heart-red);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 0, 51, 0.3);
         }
 
-        .wa-link {
+        #no-btn { background: white; color: #666; position: relative; z-index: 100; }
+
+        /* Final Love Note */
+        #final-msg {
+            display: none;
+            font-family: var(--brittany-font);
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease;
+        }
+
+        .wa-btn {
             display: inline-block;
-            margin-top: 20px;
-            color: #25D366;
+            margin-top: 25px;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
+        /* Cupid Animation */
+        .cupid {
+            position: absolute;
+            font-size: 40px;
+            z-index: 5;
+            pointer-events: none;
+            animation: fly 6s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes fly {
+            0% { transform: translate(-100px, 100px) rotate(0deg); opacity: 1; }
+            100% { transform: translate(110vw, -100px) rotate(20deg); opacity: 1; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (min-width: 600px) {
+            .btn-container { flex-direction: row; justify-content: center; gap: 20px; }
+            .proposal-text { font-size: 4.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <div id="balloons-container"></div>
+    <div id="cupid-container"></div>
 
-    <div class="container" id="envelope-screen">
-        <div class="instruction">Hi Srushti, Click on the Mail</div>
-        <div class="envelope-wrapper" onclick="openMail()">
-            <div class="envelope">
-                <div class="heart-seal">❤️</div>
+    <div class="glass-card" id="mainCard">
+        <div id="envelopeSection">
+            <div class="mail-icon" onclick="openMail()">💌</div>
+            <p style="font-family: var(--brittany-font); font-size: 2.2rem; color: #fff; margin-top: 15px;">Hi Srushti, Click the Mail</p>
+        </div>
+
+        <div id="proposalSection">
+            <h1 class="proposal-text">Srushti, Will You Be My Valentine?</h1>
+            <div class="btn-container">
+                <button id="yes-btn" onclick="celebrate()">Yes of course!</button>
+                <button id="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">No not at all</button>
             </div>
         </div>
-    </div>
 
-    <div id="question-screen">
-        <div class="calligraphy">Srushti, Will You Be My Valentine?</div>
-        <div class="btn-group">
-            <button class="btn-yes" onclick="sayYes()">Yes of course</button>
-            <button id="no-btn" class="btn-no" onmouseover="moveNo()" onclick="moveNo()">No not at all</button>
+        <div id="final-msg">
+            Happy Propose Day Sru! ❤️<br>
+            <span style="font-family: 'Montserrat'; font-size: 1rem; display: block; margin-top: 15px; font-weight: 300;">Can't wait to see you on Valentine's.</span>
+            
+            <a id="whatsapp-link" href="#" target="_blank" class="wa-btn">Confirm on WhatsApp 📱</a>
         </div>
     </div>
 
-    <div id="final-screen">
-        <div class="calligraphy" style="font-size: 2.5rem;">Happy Propose Day Sru!</div>
-        <p>Can't wait to see you on Valentine's. ❤️</p>
-        <a id="wa-link" href="#" target="_blank" class="wa-link">📱 Send me a WhatsApp to confirm!</a>
-    </div>
-
-    <div id="cupid">🏹💘</div>
-
     <script>
-        // Create floating heart balloons
-        function createBalloons() {
-            const container = document.getElementById('balloons-container');
-            for (let i = 0; i < 15; i++) {
-                const b = document.createElement('div');
-                b.className = 'balloon';
-                b.style.left = Math.random() * 100 + 'vw';
-                b.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                b.style.delay = Math.random() * 5 + 's';
-                container.appendChild(b);
-            }
+        // Generate Floating Balloons
+        for (let i = 0; i < 15; i++) {
+            let b = document.createElement('div');
+            b.className = 'balloon';
+            b.style.left = Math.random() * 95 + 'vw';
+            b.style.animationDelay = Math.random() * 8 + 's';
+            document.getElementById('balloons-container').appendChild(b);
         }
-        createBalloons();
 
         function openMail() {
-            document.getElementById('envelope-screen').style.display = 'none';
-            document.getElementById('question-screen').style.display = 'block';
+            document.getElementById('envelopeSection').style.display = 'none';
+            document.getElementById('proposalSection').style.display = 'block';
         }
 
         function moveNo() {
             const btn = document.getElementById('no-btn');
-            btn.innerText = "Please try again!";
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.innerText = "Please try again! 😉";
+            const pad = 80;
+            const x = Math.random() * (window.innerWidth - (btn.offsetWidth + pad));
+            const y = Math.random() * (window.innerHeight - (btn.offsetHeight + pad));
             btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            btn.style.left = Math.max(pad/2, x) + 'px';
+            btn.style.top = Math.max(pad/2, y) + 'px';
         }
 
-        function sayYes() {
-            document.getElementById('question-screen').style.display = 'none';
-            document.getElementById('final-screen').style.display = 'block';
+        function createCupids() {
+            for (let i = 0; i < 5; i++) {
+                let c = document.createElement('div');
+                c.className = 'cupid';
+                c.innerHTML = '🏹';
+                c.style.top = Math.random() * 80 + 'vh';
+                c.style.animationDelay = (i * 1.5) + 's';
+                document.getElementById('cupid-container').appendChild(c);
+            }
+        }
+
+        function celebrate() {
+            document.getElementById('proposalSection').style.display = 'none';
+            document.getElementById('mainCard').style.background = 'transparent';
+            document.getElementById('mainCard').style.border = 'none';
+            document.getElementById('mainCard').style.boxShadow = 'none';
+            document.getElementById('final-msg').style.display = 'block';
             
-            // Confetti Burst
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff85a1', '#e63946', '#ffffff']
-            });
+            document.body.style.transition = "background 1.5s ease";
+            document.body.style.background = "#ff4d6d";
 
-            // Move Cupid up
-            const cupid = document.getElementById('cupid');
-            cupid.style.bottom = '20px';
+            // Set WhatsApp Link - REPLACE XXXXXXXXXX WITH YOUR PHONE NUMBER
+            const phoneNumber = "918879579415"; 
+            const text = "Yes! I will be your Valentine! ❤️";
+            document.getElementById('whatsapp-link').href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
 
-            // Set WhatsApp Link (Replace XXXXXXXXXX with your number)
-            const phone = "918879579415"; // Put your phone number here!
-            const message = "Yes! I will be your Valentine! ❤️";
-            document.getElementById('wa-link').href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            createCupids();
+
+            // Confetti
+            var duration = 6 * 1000;
+            var animationEnd = Date.now() + duration;
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                confetti({
+                    particleCount: 40,
+                    startVelocity: 30,
+                    spread: 360,
+                    origin: { x: Math.random(), y: Math.random() - 0.2 },
+                    colors: ['#ff0033', '#ffffff', '#ffdae9']
+                });
+            }, 250);
         }
     </script>
 </body>

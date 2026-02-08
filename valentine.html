@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Srushti ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <title>Dearest Srushti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
+            --bridgerton-blue: #a3c1ad; /* Classic Regency Blue/Green */
+            --royal-gold: #d4af37;
+            --cream: #fffdf5;
             --brittany-font: 'Birthstone Bounce', cursive;
-            --heart-red: #ff0033;
-            --soft-pink: #ffdae9;
         }
 
         body {
@@ -20,138 +21,138 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            /* Damask Pattern Background */
+            background-color: var(--bridgerton-blue);
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png"), 
+                              radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(163,193,173,1) 100%);
             overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Playfair Display', serif;
         }
 
-        /* Metallic Balloons */
+        /* Metallic Rose Gold Heart Balloons */
         .balloon {
             position: absolute;
-            width: 45px;
-            height: 55px;
-            background: radial-gradient(circle at 30% 30%, #fff 0%, #ff85a1 40%, #d63384 100%);
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #f7d7d7, #e0b0ff 40%, #b76e79 100%);
+            transform: rotate(-45deg);
             z-index: 1;
-            box-shadow: inset -2px -2px 10px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.1);
-            animation: floatUp 8s infinite ease-in;
+            box-shadow: inset -2px -2px 8px rgba(0,0,0,0.2), 0 10px 15px rgba(0,0,0,0.1);
+            animation: floatUp 12s infinite ease-in;
             pointer-events: none;
         }
+        .balloon::before, .balloon::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: inherit;
+            border-radius: 50%;
+        }
+        .balloon::before { top: -20px; left: 0; }
+        .balloon::after { left: 20px; top: 0; }
 
         @keyframes floatUp {
-            0% { transform: translateY(110vh) rotate(0deg); }
-            100% { transform: translateY(-20vh) rotate(20deg); }
+            0% { transform: translateY(110vh) rotate(-45deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(-15deg) scale(1.1); opacity: 0; }
         }
 
-        /* Frosted Glass Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(15px);
-            padding: 40px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.6);
+        /* The Letter / Card */
+        .regency-card {
+            background: var(--cream);
+            padding: 50px 30px;
+            border-radius: 5px;
+            border: 8px double var(--royal-gold);
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2), inset 0 0 100px rgba(212,175,55,0.1);
             z-index: 10;
-            width: 90%;
-            max-width: 420px;
-            transition: all 0.5s ease;
+            width: 85%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .regency-card::before {
+            content: "✨";
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--royal-gold);
         }
 
         .mail-icon {
-            font-size: 80px;
+            font-size: 70px;
             cursor: pointer;
-            animation: heartbeat 1.5s infinite;
+            filter: sepia(0.5);
+            transition: 0.3s;
+        }
+        .mail-icon:hover { transform: scale(1.1); }
+
+        .whistledown-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #444;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--royal-gold);
             display: inline-block;
+            padding-bottom: 5px;
         }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-
-        #proposalSection { display: none; }
-
+        /* PROPOSAL TEXT (Brittany Style) */
         .proposal-text {
+            display: none;
             font-family: var(--brittany-font);
-            color: var(--heart-red);
+            color: #8b0000;
             font-size: 3.5rem;
-            margin-bottom: 25px;
+            margin: 20px 0;
             line-height: 1.1;
         }
 
         .btn-container {
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 15px;
             align-items: center;
+            margin-top: 20px;
         }
 
         button {
-            width: 80%;
-            max-width: 200px;
-            padding: 16px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 600;
+            width: 180px;
+            padding: 12px;
+            border: 1px solid var(--royal-gold);
+            background: transparent;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
             cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 1rem;
-            letter-spacing: 1px;
+            transition: 0.3s;
+            color: #444;
+            text-transform: uppercase;
         }
 
         #yes-btn {
-            background: var(--heart-red);
+            background: var(--royal-gold);
             color: white;
-            box-shadow: 0 8px 20px rgba(255, 0, 51, 0.3);
         }
 
-        #no-btn { background: white; color: #666; position: relative; z-index: 100; }
+        #no-btn {
+            background: white;
+            opacity: 0.8;
+        }
 
-        /* Final Love Note */
         #final-msg {
             display: none;
             font-family: var(--brittany-font);
             font-size: 3rem;
-            color: white;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            animation: fadeIn 1s ease;
-        }
-
-        .wa-btn {
-            display: inline-block;
-            margin-top: 25px;
-            background: #25D366;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Cupid Animation */
-        .cupid {
-            position: absolute;
-            font-size: 40px;
-            z-index: 5;
-            pointer-events: none;
-            animation: fly 6s linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes fly {
-            0% { transform: translate(-100px, 100px) rotate(0deg); opacity: 1; }
-            100% { transform: translate(110vw, -100px) rotate(20deg); opacity: 1; }
+            color: #8b0000;
+            animation: fadeIn 2s ease;
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (min-width: 600px) {
-            .btn-container { flex-direction: row; justify-content: center; gap: 20px; }
+            .btn-container { flex-direction: row; justify-content: center; }
             .proposal-text { font-size: 4.5rem; }
         }
     </style>
@@ -159,98 +160,66 @@
 <body>
 
     <div id="balloons-container"></div>
-    <div id="cupid-container"></div>
 
-    <div class="glass-card" id="mainCard">
+    <div class="regency-card" id="mainCard">
         <div id="envelopeSection">
-            <div class="mail-icon" onclick="openMail()">💌</div>
-            <p style="font-family: var(--brittany-font); font-size: 2.2rem; color: #fff; margin-top: 15px;">Hi Srushti, Click the Mail</p>
+            <div class="whistledown-text">Lady Whistledown's Society Paper</div>
+            <div class="mail-icon" onclick="revealProposal()">📜</div>
+            <p style="font-style: italic; color: #555;">Dearest Srushti, a special correspondence has arrived for you...</p>
         </div>
 
         <div id="proposalSection">
-            <h1 class="proposal-text">Srushti, Will You Be My Valentine?</h1>
-            <div class="btn-container">
-                <button id="yes-btn" onclick="celebrate()">Yes of course!</button>
-                <button id="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">No not at all</button>
+            <h1 class="proposal-text" id="qText">Srushti, Will You Be My Valentine?</h1>
+            <div class="btn-container" id="bContainer">
+                <button id="yes-btn" onclick="celebrate()">I shall</button>
+                <button id="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">I cannot</button>
             </div>
         </div>
 
         <div id="final-msg">
-            Happy Propose Day Sru! ❤️<br>
-            <span style="font-family: 'Montserrat'; font-size: 1rem; display: block; margin-top: 15px; font-weight: 300;">Can't wait to see you on Valentine's.</span>
-            
-            <a id="whatsapp-link" href="#" target="_blank" class="wa-btn">Confirm on WhatsApp 📱</a>
+            Happy Propose Day, my love. ❤️<br>
+            <span style="font-family: 'Playfair Display'; font-size: 1.1rem; display: block; margin-top: 15px; font-weight: 600;">You are the diamond of the season.</span>
         </div>
     </div>
 
     <script>
-        // Generate Floating Balloons
+        // Generate Metallic Rose Gold Hearts
         for (let i = 0; i < 15; i++) {
             let b = document.createElement('div');
             b.className = 'balloon';
-            b.style.left = Math.random() * 95 + 'vw';
-            b.style.animationDelay = Math.random() * 8 + 's';
+            b.style.left = Math.random() * 90 + 'vw';
+            b.style.animationDelay = Math.random() * 10 + 's';
             document.getElementById('balloons-container').appendChild(b);
         }
 
-        function openMail() {
+        function revealProposal() {
             document.getElementById('envelopeSection').style.display = 'none';
-            document.getElementById('proposalSection').style.display = 'block';
+            document.getElementById('qText').style.display = 'block';
+            document.getElementById('bContainer').style.display = 'flex';
         }
 
         function moveNo() {
             const btn = document.getElementById('no-btn');
-            btn.innerText = "Please try again! 😉";
-            const pad = 80;
-            const x = Math.random() * (window.innerWidth - (btn.offsetWidth + pad));
-            const y = Math.random() * (window.innerHeight - (btn.offsetHeight + pad));
+            btn.innerText = "Try again, dear!";
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
             btn.style.position = 'fixed';
-            btn.style.left = Math.max(pad/2, x) + 'px';
-            btn.style.top = Math.max(pad/2, y) + 'px';
-        }
-
-        function createCupids() {
-            for (let i = 0; i < 5; i++) {
-                let c = document.createElement('div');
-                c.className = 'cupid';
-                c.innerHTML = '🏹';
-                c.style.top = Math.random() * 80 + 'vh';
-                c.style.animationDelay = (i * 1.5) + 's';
-                document.getElementById('cupid-container').appendChild(c);
-            }
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
         }
 
         function celebrate() {
             document.getElementById('proposalSection').style.display = 'none';
-            document.getElementById('mainCard').style.background = 'transparent';
-            document.getElementById('mainCard').style.border = 'none';
-            document.getElementById('mainCard').style.boxShadow = 'none';
             document.getElementById('final-msg').style.display = 'block';
-            
-            document.body.style.transition = "background 1.5s ease";
-            document.body.style.background = "#ff4d6d";
+            document.body.style.background = "#f5e1da"; // Soft blush finish
 
-            // Set WhatsApp Link - REPLACE XXXXXXXXXX WITH YOUR PHONE NUMBER
-            const phoneNumber = "918879579415"; 
-            const text = "Yes! I will be your Valentine! ❤️";
-            document.getElementById('whatsapp-link').href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
-
-            createCupids();
-
-            // Confetti
-            var duration = 6 * 1000;
-            var animationEnd = Date.now() + duration;
-            var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
-                confetti({
-                    particleCount: 40,
-                    startVelocity: 30,
-                    spread: 360,
-                    origin: { x: Math.random(), y: Math.random() - 0.2 },
-                    colors: ['#ff0033', '#ffffff', '#ffdae9']
-                });
-            }, 250);
+            // Royal Gold & Red Confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#d4af37', '#8b0000', '#ffffff']
+            });
         }
     </script>
 </body>

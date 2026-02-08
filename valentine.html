@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Srushti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-bg: #ffdae0;
+            --heart-red: #e63946;
+            --metallic-pink: #ff85a1;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--pink-bg);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: manipulation;
+        }
+
+        /* Metallic Balloon Styling */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ff85a1 50%, #d63384 100%);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(20deg); opacity: 0; }
+        }
+
+        /* Main Wrapper */
+        #content-wrapper {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Envelope */
+        .envelope {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .instruction {
+            font-size: 1.4rem;
+            color: #d63384;
+            font-family: 'Dancing Script', cursive;
+            margin-top: 10px;
+        }
+
+        /* The Proposal Card */
+        #proposal-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--heart-red);
+            font-size: 2.5rem; /* Scaled down for mobile */
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column; /* Stacked on mobile for better reach */
+            gap: 15px;
+            align-items: center;
+            position: relative;
+            min-height: 120px;
+        }
+
+        button {
+            width: 80%;
+            max-width: 200px;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        #yes-btn { 
+            background: linear-gradient(45deg, #e63946, #ff4d6d);
+            color: white;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+            order: 1;
+        }
+
+        #no-btn { 
+            background-color: #f8f9fa; 
+            color: #6c757d; 
+            order: 2;
+            z-index: 100;
+        }
+
+        /* Final Message */
+        #final-message {
+            display: none;
+            font-family: 'Dancing Script', cursive;
+            padding: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        #final-message p:first-child { font-size: 2rem; color: var(--heart-red); margin: 0; }
+        #final-message p:last-child { font-size: 1.2rem; color: #555; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Cupid */
+        #cupid {
+            display: none;
+            position: fixed;
+            font-size: 50px;
+            top: 30%;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        @keyframes flyAcross {
+            0% { left: -100px; }
+            100% { left: 110%; }
+        }
+
+        /* Desktop Adjustments */
+        @media (min-width: 600px) {
+            h1 { font-size: 3.5rem; }
+            .btn-container { flex-direction: row; min-height: 60px; }
+            .envelope { font-size: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        for (let i = 0; i < 15; i++) {
+            let b = document.createElement('div');
+            b.className = 'balloon';
+            b.style.left = Math.random() * 90 + 'vw';
+            b.style.bottom = '-10%';
+            b.style.animation = `floatUp ${7 + Math.random() * 7}s infinite linear`;
+            b.style.animationDelay = `${Math.random() * 5}s`;
+            document.body.appendChild(b);
+        }
+    </script>
+
+    <div id="content-wrapper">
+        <div id="envelope-container" onclick="openEnvelope()">
+            <div class="envelope">💌</div>
+            <div class="instruction">Hi Srushti,<br>Click on the Mail</div>
+        </div>
+
+        <div id="proposal-card">
+            <h1>Srushti,<br>Will You Be My Valentine?</h1>
+            <div class="btn-container">
+                <button id="yes-btn" onclick="sayYes()">Yes</button>
+                <button id="no-btn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+            </div>
+        </div>
+
+        <div id="final-message">
+            <p>Happy Propose Day love! ❤️</p>
+            <p>Can't wait to see you on Valentines.</p>
+        </div>
+    </div>
+
+    <div id="cupid">🏹💘</div>
+
+    <script>
+        function openEnvelope() {
+            document.getElementById('envelope-container').style.display = 'none';
+            document.getElementById('proposal-card').style.display = 'block';
+        }
+
+        function moveNo() {
+            const noBtn = document.getElementById('no-btn');
+            noBtn.innerText = "Please try again!";
+            
+            // Keeps the button within the visible viewport padding
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - (noBtn.offsetWidth + padding));
+            const y = Math.random() * (window.innerHeight - (noBtn.offsetHeight + padding));
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = Math.max(padding, x) + 'px';
+            noBtn.style.top = Math.max(padding, y) + 'px';
+        }
+
+        function sayYes() {
+            document.getElementById('proposal-card').style.display = 'none';
+            document.getElementById('final-message').style.display = 'block';
+            
+            const cupid = document.getElementById('cupid');
+            cupid.style.display = 'block';
+            cupid.style.animation = 'flyAcross 2.5s linear forwards';
+
+            document.body.style.backgroundColor = "#ffb3c1";
+        }
+    </script>
+</body>
+</html>
